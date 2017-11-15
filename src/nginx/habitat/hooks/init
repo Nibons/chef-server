@@ -2,6 +2,13 @@
 
 exec 2>&1
 
+echo "Linking conf dirs"
+
+ln -sf {{pkg.path}}/nginx/conf {{pkg.svc_var_path}}/
+ln -sf {{pkg.path}}/nginx/html {{pkg.svc_var_path}}/
+
+#ln -sf /proc/self/fd /dev/
+
 for dir in log logs tmp; do
   mkdir -pv "{{pkg.svc_var_path}}/$dir"
 done
@@ -14,8 +21,8 @@ for dir in static; do
   mkdir -pv "{{pkg.svc_static_path}}/$dir"
 done
 
-chown -R hab:hab "{{pkg.svc_config_path}}" "{{pkg.svc_data_path}}" \
-  "{{pkg.svc_var_path}}"
+#chown -R hab:hab "{{pkg.svc_config_path}}" "{{pkg.svc_data_path}}" \
+# "{{pkg.svc_var_path}}"
 
 # Create SSL certs
 
@@ -40,4 +47,4 @@ if [[ ! -f "$cert_file" ]]; then
 fi
 
 # quick and dirty hack to see the lpeg lua library
-ln -s {{pkgPathFor "irvingpop/openresty-lpeg"}}/lpeg.so {{pkgPathFor "core/openresty"}}/luajit/lib/lua/5.1/
+#ln -s {{pkgPathFor "irvingpop/openresty-lpeg"}}/lpeg.so {{pkgPathFor "core/openresty"}}/luajit/lib/lua/5.1/

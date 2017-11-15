@@ -36,3 +36,24 @@ ssl_ciphers = "ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-E
 [data_collector]
 token = "93a49a4f2482c64126f7b6015e6b0f30284287ee4054ff8807fb63d9cbd1c506"
 
+worker_processes = 4
+
+#### Events Context Configuration
+[events]
+# worker_connections: Connections per Worker Process.  Default = 1024
+worker_connections = 1024
+
+#### HTTP Context Configuration
+[http]
+# http.sendfile: Enable (on) or disable (off) Sendfile Support.  Default = on
+sendfile = "on"
+
+# http.tcp_nopush: Enable (on) or disable (off) use of TCP_NOPUSH or TCP_CORK socket option. Default = on
+tcp_nopush = "on"
+
+# http.tcp_nodelay: Enable (on) or disable (off) use of the TCP_NODELAY option. Default = on
+tcp_nodelay = "on"
+
+# http.keepalive_timeout: Timeout on client connection keepalive, in seconds. Default = 75
+keepalive_timeout = 60
+
